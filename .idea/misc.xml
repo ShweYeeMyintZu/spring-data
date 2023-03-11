@@ -7,6 +7,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/demo-datasource/pom.xml" />
         <option value="$PROJECT_DIR$/demo-callback-template/pom.xml" />
+        <option value="$PROJECT_DIR$/demo-connection-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-work-unit/pom.xml" />
+        <option value="$PROJECT_DIR$/interoperability/pom.xml" />
+        <option value="$PROJECT_DIR$/one-to-one-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/one-to-many-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/many-to-many/pom.xml" />
+        <option value="$PROJECT_DIR$/zoo-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/product-customer-order/pom.xml" />
       </list>
     </option>
   </component>

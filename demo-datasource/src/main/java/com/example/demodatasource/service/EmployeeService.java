@@ -3,7 +3,6 @@ package com.example.demodatasource.service;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.print.DocFlavor;
 import javax.sql.DataSource;
 import java.util.List;
 @Service

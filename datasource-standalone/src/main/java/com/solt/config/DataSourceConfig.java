@@ -18,7 +18,7 @@ public class DataSourceConfig {
                 .addScript("schema.sql")
                 .addScript("data.sql")
                 .setScriptEncoding("UTF-8")
-        .generateUniqueName(true)
+                .generateUniqueName(true)
                 .build();
     }
 }
