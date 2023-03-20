@@ -1,4 +1,4 @@
-package com.example.springjpacollectiontable.util;
+package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
