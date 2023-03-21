@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -27,10 +28,26 @@ public class Book {
     @Past(message="Year is Published must be past.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate yearPublished;
-    @NotEmpty(message = "Pubblisher cannot be empty!")
+    @NotEmpty(message = "Publisher cannot be empty!")
     private String publisher;
     @NotEmpty(message = "Image cannot be empty.")
     private String imgUrl;
     @ManyToOne
     private Author author;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id && Objects.equals(title, book.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
+
+    @Transient
+    private boolean render;
 }
