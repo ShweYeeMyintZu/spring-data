@@ -24,6 +24,12 @@ import java.util.stream.Collectors;
 public class BooksController {
     @Autowired
    private final  BookService bookService;
+    private boolean changeButton;
+    @ModelAttribute("changeButton")
+    public boolean isChangeButton(){
+        return changeButton;
+    }
+
     @GetMapping("/check-out-v1")
     public String checkOutV1(Model model){
         Set<CartItem> cartItems=bookService.getCartItems()
@@ -33,15 +39,14 @@ public class BooksController {
                             return item;
                 })
                 .collect(Collectors.toSet());
+        model.addAttribute("cartItem",new CartItem());
         model.addAttribute("cartItems",cartItems);
+        model.addAttribute("changeButton",true);
         return "cart-view";
     }
 
-    @GetMapping("/cart/remove")
-    public String removeFromCart(@RequestParam("id")int id){
-        bookService.removeFromCart(id);
-       return "redirect:/view-cart";
-    }
+
+
     @ModelAttribute("totalPrice")
     public double totalPrice(){
      return bookService.getCartItems()
@@ -50,9 +55,28 @@ public class BooksController {
                 .mapToDouble(i->i)
                 .sum();
     }
+    @GetMapping("/cart/remove")
+    public String removeFromCart(@RequestParam("id")int id){
+        bookService.removeFromCart(id);
+        return "redirect:/view-cart";
+    }
+    @PostMapping("/check-out-v2")
+    public String checkoutV2(CartItem cartItem,Model model){
+        model.addAttribute("cartItems",bookService.getCartItems());
+        int i=0;
+        for(CartItem cartItem1:bookService.getCartItems()){
+            cartItem1.setQuantity(cartItem.getQuantityLinkedList().get(i));
+            cartItem1.setRender(false);
+            i++;
+        }
+        bookService.getCartItems().forEach(System.out::println);
+        return "redirect:/view-cart";
+    }
 
     @GetMapping("/view-cart")
     public String viewCart(Model model){
+        model.addAttribute("cartItems",new CartItem());
+        model.addAttribute("changeButton",false);
         model.addAttribute("cartItems",bookService.getCartItems());
         return "cart-view";
     }

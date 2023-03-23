@@ -26,6 +26,10 @@ public class CartItem {
 
     private boolean render;
 
+    public CartItem(){
+
+    }
+
     private LinkedList<Integer> quantityLinkedList=new LinkedList<>();
 
     public CartItem(int id, String title, double price, int quantity) {
